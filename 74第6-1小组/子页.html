@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI在校园 - 人工智能的奇妙世界</title>
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 页面背景 - 蓝色科技渐变 */
+        body {
+            background: linear-gradient(135deg, #0b132b, #1c2541, #3a506b);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 顶部装饰线条 */
+        .top-line {
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00a8e8, #0077be, #00a8e8);
+            animation: shine 3s linear infinite;
+        }
+
+        /* 发光动画 */
+        @keyframes shine {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* 页面容器 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 标题区域 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .page-title {
+            font-size: 46px;
+            color: #00d9ff;
+            text-shadow: 0 0 20px #0077be, 0 0 40px #00a8e8;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: #cce7f5;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 返回主页按钮 */
+        .back-home {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            background: rgba(0, 168, 232, 0.2);
+            border: 2px solid #00a8e8;
+            border-radius: 50px;
+            color: #00d9ff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-home:hover {
+            background: #00a8e8;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 168, 232, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* 内容卡片布局 */
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        /* 科技感卡片 */
+        .ai-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 168, 232, 0.3);
+            border-radius: 20px;
+            padding: 35px 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 卡片悬浮效果 */
+        .ai-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d9ff;
+            box-shadow: 0 15px 40px rgba(0, 168, 232, 0.3);
+        }
+
+        /* 卡片图标 */
+        .card-icon {
+            font-size: 50px;
+            color: #00d9ff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px #00a8e8;
+        }
+
+        /* 卡片标题 */
+        .card-title {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .card-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: #00d9ff;
+            border-radius: 3px;
+        }
+
+        /* 卡片内容 */
+        .card-desc {
+            font-size: 16px;
+            color: #e0f7ff;
+            line-height: 1.8;
+            margin-top: 15px;
+        }
+
+        /* 科技装饰角标 */
+        .ai-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, transparent 50%, rgba(0, 168, 232, 0.1) 50%);
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(0, 168, 232, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部发光线条 -->
+    <div class="top-line"></div>
+
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="page-header">
+            <h1 class="page-title">🏫 AI在校园</h1>
+            <p class="page-subtitle">
+                人工智能正在全面融入校园生活，从作业批改到考勤管理，从个性化学习到智慧教学，
+                用科技力量重新定义教与学的全新方式，打造高效、智能、个性化的未来校园。
+            </p>
+            <!-- 返回主页按钮 -->
+            <a href="主页.html" class="back-home">
+                <i class="fas fa-home"></i> 返回主页
+            </a>
+        </div>
+
+        <!-- 三大功能卡片 -->
+        <div class="cards-wrapper">
+            <!-- 1. 智能批改作业 -->
+            <div class="ai-card">
+                <div class="card-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3 class="card-title">智能批改作业</h3>
+                <p class="card-desc">
+                    AI作业批改系统能够自动识别客观题、主观题答案，秒级完成批改与评分，大幅减轻教师工作负担。
+                    系统自动生成错题分析报告，精准定位学生知识薄弱点，让教学更有针对性，学习效率显著提升。
+                </p>
+            </div>
+
+            <!-- 2. 人脸识别考勤 -->
+            <div class="ai-card">
+                <div class="card-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <h3 class="card-title">人脸识别考勤</h3>
+                <p class="card-desc">
+                    校园人脸识别考勤系统无需人工登记，刷脸即可快速完成签到，杜绝代签、漏签现象。
+                    考勤数据实时同步至管理后台，家长与教师可随时查看，让校园管理更加安全、高效、智能化。
+                </p>
+            </div>
+
+            <!-- 3. 个性化学习推荐 -->
+            <div class="ai-card">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="card-title">个性化学习推荐</h3>
+                <p class="card-desc">
+                    AI学习系统根据每个学生的学习进度、错题记录、兴趣特点，智能推荐专属学习内容。
+                    实现因材施教，让每个学生都能获得最适合自己的学习路径，全面提升学习效果与综合能力。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>小组合作 · 人工智能的奇妙世界 © 2025</footer>
+</body>
+</html>

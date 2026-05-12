@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>虚拟现实与元宇宙 - 进入虚拟世界</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif}
+body{
+    background:radial-gradient(circle at center,#0d0221,#200446,#10103a);
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:#fff;text-align:center;overflow:hidden
+}
+.vr-frame{
+    width:90vw;max-width:800px;height:80vh;max-height:600px;
+    border:3px solid #7928ca;border-radius:50%;
+    background:rgba(0,0,0,0.4);box-shadow:0 0 60px #7928ca,0 0 120px #4a00e0;
+    display:flex;align-items:center;justify-content:center;position:relative;
+    animation:ringGlow 3s infinite alternate
+}
+@keyframes ringGlow{
+    from{box-shadow:0 0 40px #7928ca,0 0 80px #4a00e0}
+    to{box-shadow:0 0 80px #7928ca,0 0 160px #00ffff}
+}
+.enter-btn{
+    padding:18px 50px;font-size:22px;background:linear-gradient(90deg,#7928ca,#00ffff);
+    border:none;border-radius:50px;color:#000;font-weight:bold;cursor:pointer;
+    box-shadow:0 0 20px #00ffff;transition:all 0.3s
+}
+.enter-btn:hover{transform:scale(1.1);box-shadow:0 0 40px #00ffff}
+.title{font-size:42px;margin-bottom:30px;text-shadow:0 0 15px #00ffff}
+.nav-box{margin-top:40px;display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
+.nav-box a{
+    padding:10px 20px;background:rgba(255,255,255,0.1);border:1px solid #7928ca;
+    border-radius:30px;color:#fff;text-decoration:none
+}
+</style>
+</head>
+<body>
+<h1 class="title">虚拟现实与元宇宙</h1>
+<div class="vr-frame">
+    <div>
+        <button class="enter-btn" onclick="playSound()"> <a href="page1.html">VR与AR区别</a>进入虚拟世界</button>
+    </div>
+</div>
+<div class="nav-box">
+    <a href="page1.html">VR与AR区别</a>
+    <a href="page2.html">元宇宙校园</a>
+    <a href="page3.html">3D建模初探</a>
+    <a href="page4.html">虚拟数字人</a>
+    <a href="page5.html">沉浸式学习</a>
+</div>
+
+<audio id="sci-fi" src="https://assets.mixkit.co/sfx/preview/mixkit-technological-interface-select-1119.mp3"></audio>
+<script>
+function playSound(){
+    document.getElementById('sci-fi').play();
+    setTimeout(()=>alert('欢迎进入虚拟现实与元宇宙世界！'),500)
+}
+
+</script>
+</body>
+</html>

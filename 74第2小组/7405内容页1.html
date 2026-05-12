@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情绪气象台 - 读懂你的情绪，守护内心晴天</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+
+        /* 整体背景与基础样式 */
+        body {
+            background: linear-gradient(to bottom, #f0f9ff, #e6f7ff);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* 头部导航 */
+        header {
+            background: #87ceeb;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* 主体容器 */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* 板块标题 */
+        .section-title {
+            text-align: center;
+            color: #4a90e2;
+            margin: 3rem 0 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            width: 80px;
+            height: 3px;
+            background: #87ceeb;
+            display: block;
+            margin: 0.5rem auto;
+            border-radius: 3px;
+        }
+
+        /* 情绪卡片布局 */
+        .emotion-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* 情绪卡片样式 */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* 不同情绪配色 */
+        .anger { color: #ff6b6b; }
+        .anxiety { color: #feca57; }
+        .happy { color: #48dbfb; }
+        .sad { color: #a29bfe; }
+
+        /* 管理技巧区域 */
+        .tips-box {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .tips-box h3 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.6;
+        }
+
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tips-list strong {
+            color: #87ceeb;
+        }
+
+        /* 互动按钮：深呼吸动画 */
+        .breath-btn {
+            display: block;
+            width: 200px;
+            margin: 1rem auto;
+            padding: 1rem;
+            background: #87ceeb;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .breath-btn:hover {
+            background: #64b5f6;
+        }
+
+        /* 动画区域 */
+        .breath-animation {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            color: #4a90e2;
+            display: none;
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            background: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <h1>🌤️ 情绪气象台</h1>
+        <p>识别情绪 · 接纳自我 · 守护内心的晴天</p>
+<p><a href="7407主页.html" class="btn btn1">返回主页</a></p>
+    </header>
+
+    <!-- 主体内容 -->
+    <div class="container">
+        <!-- 情绪识别板块 -->
+        <h2 class="section-title">📊 情绪识别站</h2>
+        <div class="emotion-cards">
+            <!-- 愤怒 -->
+            <div class="card">
+                <h3 class="anger">😠 愤怒</h3>
+                <p>身体信号：心跳加快、眉头紧锁、肌肉紧绷、想大声说话<br>
+                核心感受：感到被冒犯、不被理解、需求未被满足</p>
+            </div>
+
+            <!-- 焦虑 -->
+            <div class="card">
+                <h3 class="anxiety">😰 焦虑</h3>
+                <p>身体信号：手心出汗、坐立不安、胸闷、胡思乱想<br>
+                核心感受：对未来担忧、害怕失控、过度思虑未发生的事</p>
+            </div>
+
+            <!-- 快乐 -->
+            <div class="card">
+                <h3 class="happy">😊 快乐</h3>
+                <p>身体信号：嘴角上扬、眼神明亮、呼吸平稳、身体放松<br>
+                核心感受：满足、愉悦、充满能量、对生活充满期待</p>
+            </div>
+
+            <!-- 悲伤 -->
+            <div class="card">
+                <h3 class="sad">😢 悲伤</h3>
+                <p>身体信号：眼眶发红、精神萎靡、食欲下降、不想说话<br>
+                核心感受：失落、难过、失去重要事物、渴望安慰</p>
+            </div>
+        </div>
+
+        <!-- 情绪管理技巧 -->
+        <h2 class="section-title">💡 情绪管理小锦囊</h2>
+        <div class="tips-box">
+            <h3>✅ 实用调节方法</h3>
+            <ul class="tips-list">
+                <li><strong>478深呼吸法</strong>：用鼻子吸气4秒 → 憋气7秒 → 嘴巴呼气8秒，循环3次，快速平复愤怒与焦虑</li>
+                <li><strong>情绪命名法</strong>：说出"我现在很生气/焦虑"，给情绪贴标签，能立刻降低情绪强度</li>
+                <li><strong>5分钟暂停法</strong>：情绪上头时，离开当下环境，喝杯水、走两步，给大脑冷静时间</li>
+                <li><strong>书写释放法</strong>：把烦恼写在纸上，相当于把情绪从心里"搬出来"，有效缓解压力</li>
+                <li><strong>正念觉察</strong>：专注当下的感受，不评判、不抗拒，允许情绪自然流动</li>
+                <li><strong>快乐储蓄</strong>：每天记录1件开心小事，积累积极情绪，对抗负面情绪</li>
+            </ul>
+
+            <!-- 深呼吸互动动画 -->
+            <button class="breath-btn" onclick="startBreath()">🧘 启动深呼吸练习</button>
+            <div class="breath-animation" id="breathAnim"></div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer>
+        <p>每一种情绪都值得被看见 | 情绪气象台 · 陪伴你的每一天 💛</p>
+    </footer>
+
+    <script>
+        // 深呼吸动画功能
+        function startBreath() {
+            const anim = document.getElementById('breathAnim');
+            anim.style.display = 'block';
+            const steps = [
+                '🌬️ 用鼻子吸气 4 秒...',
+                '⏸️ 屏住呼吸 7 秒...',
+                '💨 慢慢呼气 8 秒...',
+                '✨ 完成一轮，感觉轻松了吗？'
+            ];
+            
+            let index = 0;
+            anim.textContent = steps[index];
+            
+            const timer = setInterval(() => {
+                index++;
+                if (index < steps.length) {
+                    anim.textContent = steps[index];
+                } else {
+                    clearInterval(timer);
+                    // 3秒后重置
+                    setTimeout(() => {
+                        anim.style.display = 'none';
+                    }, 3000);
+                }
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

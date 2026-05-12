@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI在校园 · 传统戏曲文化</title>
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 页面整体风格：蓝色科技风 */
+        body {
+            background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+            color: #e6f1ff;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 背景光点效果 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 15% 25%, rgba(100, 181, 246, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(100, 181, 246, 0.08), transparent 25%);
+            z-index: -1;
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* 返回主页按钮 */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            background: linear-gradient(45deg, #2196F3, #42A5F5);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(33,150,243,0.3);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(33,150,243,0.4);
+        }
+
+        /* 标题区域 */
+        .header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+        .title {
+            font-size: 36px;
+            background: linear-gradient(90deg, #64b5f6, #bbdefb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+        .desc {
+            font-size: 18px;
+            color: #a8b2d3;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 分割线 */
+        .line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2196F3, #64b5f6);
+            margin: 20px auto 40px;
+            border-radius: 2px;
+        }
+
+        /* 卡片布局 */
+        .card-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* 科技卡片 */
+        .card {
+            background: rgba(17, 34, 64, 0.7);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(100,181,246,0.4);
+            box-shadow: 0 10px 30px rgba(100,181,246,0.15);
+        }
+
+        /* 卡片标题 */
+        .card-title {
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-title i {
+            color: #64b5f6;
+        }
+
+        /* 内容样式 */
+        .card p {
+            color: #ccd6f6;
+            margin-bottom: 12px;
+        }
+        .card ul {
+            padding-left: 20px;
+            color: #ccd6f6;
+        }
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        /* 唱词特殊样式 */
+        .lyric {
+            background: rgba(100,181,246,0.1);
+            border-left: 4px solid #64b5f6;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #e6f1ff;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* 脸谱颜色块 */
+        .face-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 10px 0;
+        }
+        .color-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+
+        /* 底部 */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #8892b0;
+            border-top: 1px solid rgba(100,181,246,0.1);
+            margin-top: 40px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width:768px) {
+            .title { font-size: 28px; }
+            .card-box { grid-template-columns: 1fr; }
+            .back-btn { padding: 8px 15px; font-size: 14px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 返回主页按钮 -->
+<a href="index.html" class="back-btn">
+    <i class="fas fa-home"></i> 返回主页
+</a>
+
+<div class="container">
+    <!-- 头部 -->
+    <div class="header">
+        <h1 class="title">AI在校园 · 传统戏曲文化传承</h1>
+        <p class="desc">人工智能助力传统文化传播，让经典戏曲在校园中焕发新生</p>
+        <div class="line"></div>
+    </div>
+
+    <!-- 内容卡片 -->
+    <div class="card-box">
+        <!-- 脸谱颜色含义 -->
+        <div class="card">
+            <h2 class="card-title">
+                <i class="fas fa-theater-masks"></i> 脸谱颜色含义
+            </h2>
+            <p>京剧脸谱用色彩代表人物性格、品质与角色，是戏曲最鲜明的文化符号。</p>
+
+            <div class="face-item">
+                <div class="color-box" style="background:red;"></div>
+                <span><strong>红脸</strong>：忠勇、正义、有血性（代表：关羽）</span>
+            </div>
+            <div class="face-item">
+                <div class="color-box" style="background:white;"></div>
+                <span><strong>白脸</strong>：奸诈、多疑、阴险（代表：曹操）</span>
+            </div>
+            <div class="face-item">
+                <div class="color-box" style="background:black;"></div>
+                <span><strong>黑脸</strong>：正直、刚烈、无私（代表：包拯）</span>
+            </div>
+            <div class="face-item">
+                <div class="color-box" style="background:blue;"></div>
+                <span><strong>蓝脸</strong>：刚强、骁勇、有心计（代表：窦尔敦）</span>
+            </div>
+            <div class="face-item">
+                <div class="color-box" style="background:yellow;"></div>
+                <span><strong>黄脸</strong>：勇猛、暴躁（代表：典韦）</span>
+            </div>
+        </div>
+
+        <!-- 经典唱词 -->
+        <div class="card">
+            <h2 class="card-title">
+                <i class="fas fa-music"></i> 经典戏曲唱词
+            </h2>
+            <p>经典唱词语言优美、意境深远，是中华文学瑰宝。</p>
+
+            <div class="lyric">
+                【京剧·霸王别姬】<br>
+                力拔山兮气盖世，时不利兮骓不逝。
+            </div>
+            <div class="lyric">
+                【黄梅戏·天仙配】<br>
+                树上的鸟儿成双对，绿水青山带笑颜。
+            </div>
+            <div class="lyric">
+                【京剧·空城计】<br>
+                我本是卧龙岗散淡的人，凭阴阳如反掌保定乾坤。
+            </div>
+            <div class="lyric">
+                【越剧·红楼梦】<br>
+                花谢花飞飞满天，红消香断有谁怜。
+            </div>
+        </div>
+
+        <!-- 戏服讲究 -->
+        <div class="card">
+            <h2 class="card-title">
+                <i class="fas fa-tshirt"></i> 戏服的讲究
+            </h2>
+            <p>戏服（行头）严格遵循“宁穿破，不穿错”的原则，身份、地位、性格全看服装。</p>
+            <ul>
+                <li>龙袍：皇帝专用，绣九龙，明黄颜色</li>
+                <li>官衣：官员穿着，颜色代表品级（红高蓝低）</li>
+                <li>靠：武将战袍，有四面靠旗，显威武</li>
+                <li>帔：富贵人家常服，对襟、大袖、长及脚</li>
+                <li>褶子：平民便服，用途最广，素色为主</li>
+                <li>水袖：表现情绪，长舞飘逸，极具美感</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <p>© AI在校园 · 传统文化传承平台</p>
+    </div>
+</div>
+
+</body>
+</html>

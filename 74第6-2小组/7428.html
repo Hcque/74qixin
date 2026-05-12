@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动物伙伴 · 生态保护</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #66bb6a;
+            --bg: #f5f9f3;
+            --card-bg: #ffffff;
+            --text: #2c3e2c;
+            --text-light: #5a6b5a;
+            --accent: #ff8f00;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 导航栏 */
+        nav {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            backdrop-filter: blur(8px);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-links { display: flex; gap: 1.8rem; }
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.95rem;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; width: 0%; height: 2px;
+            background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a.active { color: #fff; font-weight: 500; }
+
+        /* 头部横幅 */
+        .banner {
+            height: 65vh;
+            min-height: 450px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.45), rgba(20,50,20,0.6)), 
+                        url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        .banner-text h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .banner-text p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        /* 通用容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: "";
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            display: block;
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 滚动动画基础类 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.85s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 动物伙伴卡片 */
+        .animal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .animal-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(46, 125, 50, 0.08);
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s;
+            cursor: pointer;
+        }
+        .animal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(46, 125, 50, 0.18);
+        }
+        .animal-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .animal-card:hover img { transform: scale(1.04); }
+        .animal-info { padding: 1.5rem; }
+        .animal-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-size: 1.25rem;
+        }
+        .animal-info p { color: var(--text-light); font-size: 0.95rem; }
+
+        /* 生态保护内容 */
+        .protect-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background: #fff;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+        .protect-text p { margin-bottom: 1rem; font-size: 1.05rem; }
+        .protect-img img {
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            object-fit: cover;
+            height: 320px;
+        }
+
+        /* 行动倡议 */
+        .action-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+        }
+        .action-box h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+        .action-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .action-list li {
+            background: #fff;
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .action-list li:hover { transform: translateX(5px); }
+        .icon-bullet {
+            width: 28px; height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; flex-shrink: 0;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #1b5e20;
+            color: rgba(255,255,255,0.85);
+            text-align: center;
+            padding: 3rem 1.5rem;
+            margin-top: 2rem;
+        }
+        footer p { margin: 0.4rem 0; }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 48px; height: 48px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+        .back-to-top.visible {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .back-to-top:hover { background: var(--accent); transform: translateY(-3px); }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .protect-content { grid-template-columns: 1fr; padding: 2rem; }
+            .protect-img img { height: 240px; }
+        }
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .banner-text h1 { font-size: 2rem; }
+            .container { padding: 3rem 1rem; }
+            .back-to-top { bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">🐾 动物伙伴与生态保护</div>
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#animals">动物伙伴</a>
+            <a href="#protect">生态保护</a>
+            <a href="#action">行动倡议</a>
+        </div>
+    </div>
+</nav>
+
+<header class="banner" id="home">
+    <div class="banner-text reveal">
+        <h1>守护动物伙伴 · 共建绿色家园</h1>
+        <p>每一种生物都是地球生态链的重要一环，保护它们，就是保护我们共同的未来。</p>
+    </div>
+</header>
+
+<main>
+    <section class="container" id="animals">
+        <h2 class="section-title reveal">我们的动物伙伴</h2>
+        <div class="animal-grid">
+            <div class="animal-card reveal">
+                <img src="https://images.unsplash.com/photo-1564349683136-772650119857?auto=format&fit=crop&w=800&q=80" alt="大熊猫">
+                <div class="animal-info">
+                    <h3>大熊猫</h3>
+                    <p>中国国宝，世界自然保护的象征，依赖高山竹林生态系统生存。</p>
+                </div>
+            </div>
+            <div class="animal-card reveal">
+                <img src="https://images.unsplash.com/photo-1549480017-d76466a4b738?auto=format&fit=crop&w=800&q=80" alt="梅花鹿">
+                <div class="animal-info">
+                    <h3>梅花鹿</h3>
+                    <p>森林生态系统的重要成员，对维持林下植被演替与生态平衡有重要作用。</p>
+                </div>
+            </div>
+            <div class="animal-card reveal">
+                <img src="https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&w=800&q=80" alt="海豚">
+                <div class="animal-info">
+                    <h3>海豚</h3>
+                    <p>海洋精灵，海洋健康状况的指示物种，需要洁净的水域与丰富的食物链。</p>
+                </div>
+            </div>
+            <div class="animal-card reveal">
+                <img src="https://images.unsplash.com/photo-1543549790-8b5f4a028cfb?auto=format&fit=crop&w=800&q=80" alt="猫头鹰">
+                <div class="animal-info">
+                    <h3>猫头鹰</h3>
+                    <p>夜行性森林卫士，有效控制鼠类数量，保护农作物与自然生态平衡。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="protect">
+        <h2 class="section-title reveal">为什么要保护生态环境</h2>
+        <div class="protect-content reveal">
+            <div class="protect-text">
+                <p>地球是所有生命共同的摇篮。生态系统一旦被破坏，动物将失去栖息地，食物链断裂，最终反噬人类自身的生存基础。</p>
+                <p>森林涵养水源、湿地净化水质、海洋调节气候。保护自然环境，就是为动物伙伴提供安全的家园，也是为人类留下可持续发展的未来。</p>
+                <p>目前全球有上万种野生动植物濒临灭绝。每一次栖息地缩减，都在无声地敲响警钟。生态保护已不是选择，而是必然。</p>
+            </div>
+            <div class="protect-img">
+                <img src="https://images.unsplash.com/photo-1448375240586-88246a4921a2?auto=format&fit=crop&w=800&q=80" alt="原始森林生态">
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="action">
+        <h2 class="section-title reveal">我们可以做什么</h2>
+        <div class="action-box reveal">
+            <h3>从小事做起，守护生命家园</h3>
+            <ul class="action-list">
+                <li><span class="icon-bullet">1</span>拒绝购买野生动物制品，不参与伤害动物的行为</li>
+                <li><span class="icon-bullet">2</span>节约水电，减少污染，低碳出行，降低环境负荷</li>
+                <li><span class="icon-bullet">3</span>爱护花草树木，积极参与植树、净滩等公益活动</li>
+                <li><span class="icon-bullet">4</span>不随意投喂、捕捉野生动物，尊重自然生存规律</li>
+                <li><span class="icon-bullet">5</span>传播生态保护知识，带动身边人加入守护行动</li>
+                <li><span class="icon-bullet">6</span>支持可持续农业与环保品牌，用消费投票</li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>🐾 动物伙伴与生态保护 © 2025 尊重生命 · 守护自然</p>
+    <p>用行动守护每一个可爱的生命，让地球永远充满生机</p>
+</footer>
+
+<button class="back-to-top" aria-label="返回顶部">↑</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section[id], header[id]');
+        const revealElements = document.querySelectorAll('.reveal');
+        const backToTopBtn = document.querySelector('.back-to-top');
+
+        // 1. 锚点平滑跳转
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPos = targetSection.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+                    window.scrollTo({ top: targetPos, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // 2. 滚动触发动画 (Intersection Observer)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 3. 导航高亮与返回顶部按钮显隐
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const navHeight = document.querySelector('nav').offsetHeight;
+
+            // 导航高亮
+            let currentId = '';
+            sections.forEach(sec => {
+                const secTop = sec.offsetTop - navHeight - 100;
+                const secHeight = sec.offsetHeight;
+                if (scrollY >= secTop && scrollY < secTop + secHeight) {
+                    currentId = sec.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+            });
+
+            // 返回顶部按钮控制
+            if (scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // 4. 返回顶部交互
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>

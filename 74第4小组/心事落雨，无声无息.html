@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心事落雨，无声无息 - 心情漫游指南</title>
+    <style>
+        /* --- 全局重置与字体 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            overflow-x: hidden;
+            background-color: #0f0f1a; /* 浅色底色，防止图片加载慢时白屏 */
+            color: #fff;
+        }
+
+        /* --- 1. 火影动态背景层 --- */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* 这里使用了一个在线的火影风格占位图，请替换为你们本地的 'images/naruto_bg.jpg' */
+            background: url('https://images.wallpapersden.com/image/download/naruto-shippuden-sad-art_bWZmZWyUmZqaraWkpJRmbmdlrWZlbWU.jpg') no-repeat center center/cover;
+            filter: brightness(0.6) blur(2px); /* 降低亮度并轻微模糊，突出文字 */
+            transition: all 1s ease;
+        }
+
+        /* 模拟“落雨”的动态遮罩效果 */
+        .rain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+            pointer-events: none;
+        }
+
+        /* --- 2. 主体容器 --- */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- 标题区 --- */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        /* --- 3. 大情绪介绍区 (喜怒哀惧) --- */
+        .emotions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        .emotion-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px); /* 毛玻璃效果 */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s, background 0.3s;
+            cursor: pointer;
+        }
+
+        .emotion-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .emotion-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .emotion-desc {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        /* 不同情绪的悬停色调 */
+        .joy:hover { border-color: #ffd700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+        .anger:hover { border-color: #ff4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.3); }
+        .sorrow:hover { border-color: #4682b4; box-shadow: 0 0 15px rgba(70, 130, 180, 0.3); }
+        .fear:hover { border-color: #8a2be2; box-shadow: 0 0 15px rgba(138, 43, 226, 0.3); }
+
+        /* --- 4. 五个内容页入口 (超链接) --- */
+        .nav-section {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .nav-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-link {
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid transparent;
+        }
+
+        .page-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.6);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        /* --- 5. 心情鼓励滚动条 --- */
+        .ticker-wrap {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            border-top: 1px solid #444;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 100;
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 50px;
+            font-size: 1.2rem;
+            color: #ffd700; /* 金色文字，像游戏提示 */
+        }
+
+        /* --- 动画定义 --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .emotions-grid { grid-template-columns: 1fr 1fr; }
+            .page-link { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景层 -->
+    <div class="bg-container">
+        <div class="rain-overlay"></div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- 头部标题 -->
+        <header>
+            <h1>心事落雨，无声无息</h1>
+            <p class="subtitle">在情绪的雨中，寻找内心的宁静</p>
+        </header>
+
+        <!-- 大情绪介绍区 -->
+        <section class="emotions-grid">
+            <div class="emotion-card joy">
+                <span class="emoji">😄</span>
+                <div class="emotion-title">喜 · Joy</div>
+                <div class="emotion-desc">如阳光穿透云层，温暖而明亮。</div>
+            </div>
+            <div class="emotion-card anger">
+                <span class="emoji">😠</span>
+                <div class="emotion-title">怒 · Anger</div>
+                <div class="emotion-desc">如火焰燃烧，提醒着边界被侵犯。</div>
+            </div>
+            <div class="emotion-card sorrow">
+                <span class="emoji">😢</span>
+                <div class="emotion-title">哀 · Sorrow</div>
+                <div class="emotion-desc">如雨水滑落，洗涤心灵的尘埃。</div>
+            </div>
+            <div class="emotion-card fear">
+                <span class="emoji">😨</span>
+                <div class="emotion-title">惧 · Fear</div>
+                <div class="emotion-desc">如迷雾笼罩，指引我们警惕未知。</div>
+            </div>
+        </section>
+
+        <!-- 导航链接区 (跳转到五个内容页) -->
+        <section class="nav-section">
+            <h2 class="nav-title">探索内心旅程</h2>
+            <div class="links-container">
+                <!-- 注意：请确保你们创建了 page1.html 到 page5.html -->
+                <a href="page1.html" class="page-link">🌿 觉察篇：情绪有名字</a>
+                <a href="page2.html" class="page-link">🌧️ 接纳篇：允许一切发生</a>
+                <a href="page3.html" class="page-link">🍃 疏导篇：交还风与纸</a>
+                <a href="page4.html" class="page-link">🌱 转化篇：情绪是土壤</a>
+                <a href="page5.html" class="page-link">☀️ 陪伴篇：晴天储备局</a>
+            </div>
+        </section>
+        
+        <!-- 底部留白，防止内容被滚动条遮挡 -->
+        <div style="height: 60px;"></div>
+    </div>
+
+    <!-- 底部滚动鼓励条 -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item">✨ 你不必时刻坚强，此刻的脆弱也被允许。</span>
+            <span class="ticker-item">🌈 雨后总会有彩虹，就像情绪过后总有平静。</span>
+            <span class="ticker-item">💪 深呼吸，你比想象中更强大。</span>
+            <span class="ticker-item">🍵 记得喝杯热水，照顾好自己的身体。</span>
+            <span class="ticker-item">🌟 每一个情绪都是信使，听听它想说什么。</span>
+            <span class="ticker-item">🫂 无论何时，请记得拥抱自己。</span>
+        </div>
+    </div>
+
+    <script>
+        // 简单的交互：点击情绪卡片时，背景轻微变化（模拟心情切换）
+        const cards = document.querySelectorAll('.emotion-card');
+        const bg = document.querySelector('.bg-container');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                // 这里只是简单的视觉反馈，实际项目中可以切换不同的背景图
+                bg.style.filter = 'brightness(0.8) blur(0px)';
+                setTimeout(() => {
+                    bg.style.filter = 'brightness(0.6) blur(2px)';
+                }, 500);
+                
+                // 获取情绪名称
+                const emotion = card.querySelector('.emotion-title').innerText;
+                console.log(`用户关注了情绪：${emotion}`);
+            });
+        });
+    </script>
+</body>
+</html>

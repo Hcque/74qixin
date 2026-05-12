@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人工智能的奇妙世界</title>
+    <!-- 引入粒子背景库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 粒子背景容器 */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            z-index: -1;
+        }
+
+        /* 页面主体容器 */
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+
+        /* 标题样式 */
+        .title {
+            text-align: center;
+            color: #fff;
+            font-size: 42px;
+            margin: 20px 0 40px;
+            text-shadow: 0 0 15px #00e6ff;
+        }
+
+        /* AI大脑导航栏 */
+        .ai-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        /* AI大脑图标 */
+        .ai-brain {
+            width: 100px;
+            height: 100px;
+            transition: 0.3s;
+            filter: drop-shadow(0 0 10px #00e6ff);
+        }
+        .ai-brain:hover {
+            transform: scale(1.1);
+        }
+
+        /* 导航按钮 */
+        .nav-btn {
+            padding: 12px 25px;
+            background: rgba(0, 230, 255, 0.2);
+            border: 2px solid #00e6ff;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(0,230,255,0.3);
+        }
+        .nav-btn:hover {
+            background: #00e6ff;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        /* 每日AI冷知识 滚动条 */
+        .knowledge-box {
+            width: 100%;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            border: 1px solid #00e6ff;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        .knowledge-title {
+            float: left;
+            height: 60px;
+            line-height: 60px;
+            padding: 0 20px;
+            background: #00e6ff;
+            color: #000;
+            font-weight: bold;
+        }
+        /* 滚动动画 */
+        .scroll-knowledge {
+            height: 60px;
+            line-height: 60px;
+            color: #fff;
+            white-space: nowrap;
+            animation: scroll 15s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* 底部说明 */
+        .footer {
+            text-align: center;
+            color: #ccc;
+            margin-top: 50px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态粒子背景 -->
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <!-- 主标题 -->
+        <h1 class="title">🤖 人工智能的奇妙世界</h1>
+
+        <!-- AI大脑导航栏 -->
+        <div class="ai-nav">
+            <img src="https://cdn-icons-png.flaticon.com/512/1673/1673675.png" class="ai-brain" alt="AI大脑">
+            <a href="ai-school.html" class="nav-btn">AI在校园</a>
+            <a href="ai-artist.html" class="nav-btn">AI艺术家</a>
+            <a href="ai-game.html" class="nav-btn">AI与游戏</a>
+            <a href="ai-ethics.html" class="nav-btn">AI伦理法庭</a>
+            <a href="ai-future.html" class="nav-btn">AI未来展望</a>
+        </div>
+
+        <!-- 每日AI冷知识滚动条 -->
+        <div class="knowledge-box">
+            <div class="knowledge-title">每日AI冷知识</div>
+            <div class="scroll-knowledge">
+                世界上第一个AI聊天机器人诞生于1966年，名为ELIZA | 阿尔法狗战胜李世石时仅拥有4个Tensor Processing Unit | AI绘画模型Stable Diffusion开源后彻底改变了数字艺术 | 人脸识别技术最早的应用场景是安防监控 | 大语言模型的参数量已从百万级增长到万亿级
+            </div>
+        </div>
+
+        <!-- 底部信息 -->
+        <div class="footer">
+            小组合作作品 | 人工智能的奇妙世界 © 2025
+        </div>
+    </div>
+
+    <!-- 粒子背景初始化 -->
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80 },
+                "size": { "value": 3 },
+                "color": { "value": "#00e6ff" },
+                "line_linked": { "enable": true, "color": "#00e6ff", "opacity": 0.4 },
+                "move": { "enable": true, "speed": 2 }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "grab" } }
+            }
+        });
+    </script>
+</body>
+</html>

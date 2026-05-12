@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索非遗文化 - 传统戏曲</title>
+    <style>
+        /* 全局样式 - 古风配色 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+        }
+
+        body {
+            background-color: #fdf6ec;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background-color: #8b0000;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-container a:hover {
+            color: #ffd700;
+        }
+
+        /* 头部横幅 */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://pic.baike.soso.com/ugc/baikepic2/25802/cut-20220817161234-1543341197_png_750_422_360230.jpg/0');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .header p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 内容容器 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        /* 板块标题 */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #8b0000;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .title-center {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 脸谱板块 */
+        .face-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .face-table th, .face-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .face-table th {
+            background-color: #8b0000;
+            color: white;
+        }
+
+        .face-red {
+            color: red;
+            font-weight: bold;
+        }
+
+        .face-white {
+            color: white;
+            background-color: #333;
+            font-weight: bold;
+        }
+
+        /* 唱词板块 */
+        .lyrics-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f9f1e6;
+            border-left: 5px solid #8b0000;
+        }
+
+        .lyrics-item h4 {
+            color: #8b0000;
+            margin-bottom: 8px;
+        }
+
+        /* 戏服板块 */
+        .costume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .costume-card {
+            text-align: center;
+        }
+
+        .costume-card h4 {
+            color: #8b0000;
+            margin: 10px 0;
+        }
+
+        /* 页脚 */
+        .footer {
+            background-color: #8b0000;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 50px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home">首页</a>
+            <a href="#face">脸谱文化</a>
+            <a href="#lyrics">经典唱词</a>
+            <a href="#costume">戏服讲究</a>
+        </div>
+    </nav>
+
+    <!-- 头部横幅 -->
+    <header class="header" id="home">
+        <h1>探索非遗文化 · 传承传统戏曲</h1>
+        <p>戏曲是中华非遗瑰宝，集脸谱、唱词、服饰、表演于一体，承载千年文化底蕴</p>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container">
+        <!-- 1. 脸谱颜色含义板块 -->
+        <section id="face">
+            <div class="title-center">
+                <h2 class="section-title"><a href="7411,17,15,3,9内.html">戏曲脸谱 · 颜色寓意</a></h2>
+            </div>
+            <div class="card">
+                <p style="text-align:center; font-size:18px; margin-bottom:20px;">脸谱是戏曲的灵魂，不同颜色代表不同人物性格，是观众识别角色的核心符号</p>
+                <table class="face-table">
+                    <tr>
+                        <th>脸谱颜色</th>
+                        <th>代表性格</th>
+                        <th>经典人物</th>
+                    </tr>
+                    <tr>
+                        <td class="face-red">红色</td>
+                        <td>忠勇侠义、有血性、正面英雄</td>
+                        <td>关羽、姜维</td>
+                    </tr>
+                    <tr>
+                        <td class="face-white">白色</td>
+                        <td>奸诈阴险、多疑狡诈、反面角色</td>
+                        <td>曹操、秦桧</td>
+                    </tr>
+                    <tr>
+                        <td>黑色</td>
+                        <td>刚正不阿、勇猛鲁莽</td>
+                        <td>包拯、张飞</td>
+                    </tr>
+                    <tr>
+                        <td>蓝色</td>
+                        <td>刚强骁勇、桀骜不驯</td>
+                        <td>窦尔敦</td>
+                    </tr>
+                    <tr>
+                        <td>黄色</td>
+                        <td>凶狠残暴、勇猛善战</td>
+                        <td>宇文成都</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- 2. 经典唱词板块 -->
+        <section id="lyrics">
+            <div class="title-center">
+                <h2 class="section-title"><a href="7411,17,15,3,9内.html">经典戏曲唱词</a></h2>
+            </div>
+            <div class="card">
+                <div class="lyrics-item">
+                    <h4>京剧《说唱脸谱》</h4>
+                    <p>蓝脸的窦尔敦盗御马，红脸的关公战长沙，黄脸的典韦，白脸的曹操，黑脸的张飞叫喳喳！</p>
+                </div>
+                <div class="lyrics-item">
+                    <h4>京剧《霸王别姬》</h4>
+                    <p>劝君王饮酒听虞歌，解君忧闷舞婆娑。赢秦无道把江山破，英雄四路起干戈。</p>
+                </div>
+                <div class="lyrics-item">
+                    <h4>昆曲《牡丹亭》</h4>
+                    <p>原来姹紫嫣红开遍，似这般都付与断井颓垣。良辰美景奈何天，赏心乐事谁家院。</p>
+                </div>
+                <div class="lyrics-item">
+                    <h4>京剧《空城计》</h4>
+                    <p>我本是卧龙岗散淡的人，论阴阳如反掌保定乾坤。先帝爷下南阳御驾三请，算就了汉家业鼎足三分。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 戏服讲究板块 -->
+        <section id="costume">
+            <div class="title-center">
+                <h2 class="section-title"><a href="7411,17,15,3,9内.html">传统戏服 · 礼仪讲究</a></h2>
+            </div>
+            <div class="card">
+                <p style="text-align:center; margin-bottom:25px;">戏服是戏曲的「行走的礼仪」，严格按照人物身份、地位、性格定制，绝不混用</p>
+                <div class="costume-grid">
+                    <div class="costume-card">
+                        <h4>蟒袍</h4>
+                        <p>帝王、将相的礼服，绣龙纹，颜色尊贵（明黄为帝王专用），庄重华丽，仅用于正式场合。</p>
+                    </div>
+                    <div class="costume-card">
+                        <h4>帔</h4>
+                        <p>官员、贵族的常服，对襟大袖，款式宽松，夫妻可穿同款异色，彰显身份地位。</p>
+                    </div>
+                    <div class="costume-card">
+                        <h4>靠</h4>
+                        <p>武将的战服，身披铠甲样式，背插四面靠旗，象征威武勇猛，用于战场打斗场景。</p>
+                    </div>
+                    <div class="costume-card">
+                        <h4>褶子</h4>
+                        <p>平民、书生、百姓的便服，款式简约，用途最广，是戏曲中最基础的服饰。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>© 2025 非遗文化探索小组 | 传承中华优秀传统文化</p>
+        <p>传统戏曲 · 人类非物质文化遗产</p>
+    </footer>
+</body>
+</html>

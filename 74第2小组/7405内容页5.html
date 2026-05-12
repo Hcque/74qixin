@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>班级夸夸墙 | 温暖鼓励 向阳成长</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+
+        /* 全局 浅黄色背景 */
+        body {
+            background-color: #fffbeb;
+            min-height: 100vh;
+            color: #443c2e;
+        }
+
+        /* 头部浅黄色渐变 */
+        header {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box: shadow 0 4px 12px rgba(200,160,60,0.15);
+            box-shadow: 0 4px 12px rgba(200,160,60,0.15);
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            color: #8c6d31;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #a07c40;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #8c6d31;
+            font-size: 1.7rem;
+            margin: 2.5rem 0 1.2rem;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 15px rgba(200,160,60,0.1);
+            border-left: 5px solid #fdcb6e;
+        }
+
+        .card h3 {
+            color: #b88c44;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 1rem;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            resize: none;
+            font-size: 1rem;
+            background-color: #fffef5;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #fdcb6e;
+        }
+
+        .btn {
+            margin-top: 1rem;
+            padding: 0.8rem 2rem;
+            background: #fdcb6e;
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #f9b846;
+        }
+
+        /* 留言展示区 */
+        .msg-box {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .msg-item {
+            background: #fff8e0;
+            padding: 1rem;
+            border-radius: 12px;
+            min-width: 200px;
+            max-width: 280px;
+            box-shadow: 0 2px 8px rgba(200,160,60,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #b88c44;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌟 班级夸夸墙</h1>
+
+        <p>发现彼此的闪光点｜温柔鼓励 一起进步</p>
+<p></p>
+<p><a href="7407主页.html" class="btn btn2">返回主页</a></p>
+    </header>
+
+    <div class="container">
+        <!-- 同学优点夸夸区 -->
+        <h2 class="section-title">💛 夸夸同学 · 发现优点</h2>
+        <div class="card">
+            <h3>写下你欣赏的同学优点～</h3>
+            <textarea id="kukuText" placeholder="例如：XX同学乐于助人、上课认真、字迹工整、性格温柔……"></textarea>
+            <button class="btn" onclick="addKuKu()">提交夸夸</button>
+            <div class="msg-box" id="kukuList"></div>
+        </div>
+
+        <!-- 给自己的鼓励信 -->
+        <h2 class="section-title">✉️ 给自己的一封鼓励信</h2>
+        <div class="card">
+            <h3>接纳自己，为自己加油</h3>
+            <textarea id="mailText" placeholder="写给努力的自己：你很棒、再坚持一下、你值得被肯定……"></textarea>
+            <button class="btn" onclick="addMail()">保存鼓励信</button>
+            <div class="msg-box" id="mailList"></div>
+        </div>
+    </div>
+
+    <footer>
+        每一份赞美与鼓励，都是成长的光 ✨
+    </footer>
+
+    <script>
+        // 添加同学夸夸
+        function addKuKu(){
+            let val = document.getElementById('kukuText').value.trim();
+            if(val === ""){
+                alert("请写下温暖的夸奖哦～");
+                return;
+            }
+            let box = document.createElement("div");
+            box.className = "msg-item";
+            box.innerText = val;
+            document.getElementById('kukuList').appendChild(box);
+            document.getElementById('kukuText').value = "";
+        }
+
+        // 添加鼓励信
+        function addMail(){
+            let val = document.getElementById('mailText').value.trim();
+            if(val === ""){
+                alert("请写下对自己的鼓励吧～");
+                return;
+            }
+            let box = document.createElement("div");
+            box.className = "msg-item";
+            box.innerText = val;
+            document.getElementById('mailList').appendChild(box);
+            document.getElementById('mailText').value = "";
+        }
+    </script>
+</body>
+</html>

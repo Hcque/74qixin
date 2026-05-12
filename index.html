@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生网页制作作品展示</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Microsoft YaHei";
+            background-color: #f4f7f6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            border-top: 5px solid #667eea;
+            transition: 0.3s;
+        }
+
+        .card:hover { transform: translateY(-6px); }
+
+        .btn {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 6px 16px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+        }
+
+        .actions { margin-top: 15px; }
+
+        .actions button {
+            margin: 5px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background: #eee;
+        }
+
+        .actions button:hover { background: #ddd; }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎨 学生网页制作作品展示</h1>
+    <p>点击卡片进入主页，给喜欢的作品点赞吧！</p>
+</header>
+
+<div class="container">
+    <div class="grid">
+
+<script>
+function like(id, type) {
+    let key = id + "_" + type;
+    let count = localStorage.getItem(key) || 0;
+    count++;
+    localStorage.setItem(key, count);
+    document.getElementById(key).innerText = count;
+}
+
+function loadCount(id) {
+    ["like", "smile"].forEach(type => {
+        let key = id + "_" + type;
+        let val = localStorage.getItem(key) || 0;
+        document.getElementById(key).innerText = val;
+    });
+}
+</script>
+
+<!-- 第1组 -->
+<a href="74第1小组/主页.html" class="card">
+    <h2>第1小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g1_like">0</span>
+        <button onclick="like('g1','like')">点赞</button><br>
+        😊 <span id="g1_smile">0</span>
+        <button onclick="like('g1','smile')">笑脸</button>
+    </div>
+</a>
+
+<!-- 第2组 -->
+<a href="74第2小组/7407主页.html" class="card">
+    <h2>第2小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g2_like">0</span>
+        <button onclick="like('g2','like')">点赞</button><br>
+        😊 <span id="g2_smile">0</span>
+        <button onclick="like('g2','smile')">笑脸</button>
+    </div>
+</a>
+
+<!-- 第3组 -->
+<a href="74第3小组/11.html" class="card">
+    <h2>第3小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g3_like">0</span>
+        <button onclick="like('g3','like')">点赞</button><br>
+        😊 <span id="g3_smile">0</span>
+        <button onclick="like('g3','smile')">笑脸</button>
+    </div>
+</a>
+
+<!-- 第4组 -->
+<a href="74第4小组/心事落雨，无声无息.html" class="card">
+    <h2>第4小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g4_like">0</span>
+        <button onclick="like('g4','like')">点赞</button><br>
+        😊 <span id="g4_smile">0</span>
+        <button onclick="like('g4','smile')">笑脸</button>
+    </div>
+</a>
+
+<!-- 第5组 -->
+<a href="74第5小组/74第五小组.html" class="card">
+    <h2>第5小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g5_like">0</span>
+        <button onclick="like('g5','like')">点赞</button><br>
+        😊 <span id="g5_smile">0</span>
+        <button onclick="like('g5','smile')">笑脸</button>
+    </div>
+</a>
+
+<!-- 第6-1组 -->
+<a href="74第6-1小组/主页.html" class="card">
+    <h2>第6-1小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g61_like">0</span>
+        <button onclick="like('g61','like')">点赞</button><br>
+        😊 <span id="g61_smile">0</span>
+        <button onclick="like('g61','smile')">笑脸</button>
+    </div>
+</a>
+
+<!-- 第6-2组 -->
+<a href="74第6-2小组/7428.html" class="card">
+    <h2>第6-2小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g62_like">0</span>
+        <button onclick="like('g62','like')">点赞</button><br>
+        😊 <span id="g62_smile">0</span>
+        <button onclick="like('g62','smile')">笑脸</button>
+    </div>
+</a>
+
+<!-- 第7组 -->
+<a href="74第7小组/7406.html" class="card">
+    <h2>第7小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g7_like">0</span>
+        <button onclick="like('g7','like')">点赞</button><br>
+        😊 <span id="g7_smile">0</span>
+        <button onclick="like('g7','smile')">笑脸</button>
+    </div>
+</a>
+
+<!-- 第8组 -->
+<a href="74第8小组/11,17,15,3,9.html" class="card">
+    <h2>第8小组</h2>
+    <span class="btn">进入主页</span>
+    <div class="actions" onclick="event.stopPropagation()">
+        👍 <span id="g8_like">0</span>
+        <button onclick="like('g8','like')">点赞</button><br>
+        😊 <span id="g8_smile">0</span>
+        <button onclick="like('g8','smile')">笑脸</button>
+    </div>
+</a>
+
+</div>
+</div>
+
+<script>
+window.onload = function() {
+    ["g1","g2","g3","g4","g5","g61","g62","g7","g8"].forEach(loadCount);
+}
+</script>
+
+</body>
+</html>

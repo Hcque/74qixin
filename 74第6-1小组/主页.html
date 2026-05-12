@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人工智能的奇妙世界</title>
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 动态粒子背景容器 */
+        #particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        /* 页面整体容器 */
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* 标题样式 */
+        .main-title {
+            text-align: center;
+            color: #fff;
+            font-size: 42px;
+            margin: 30px 0;
+            text-shadow: 0 0 15px #00e6e6, 0 0 30px #0099ff;
+        }
+
+        /* AI冷知识滚动条 */
+        .ai-tips {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 230, 230, 0.3);
+            border-radius: 50px;
+            padding: 12px 30px;
+            margin: 20px auto;
+            width: 90%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .tips-text {
+            display: inline-block;
+            color: #00e6e6;
+            font-size: 16px;
+            animation: roll 25s linear infinite;
+        }
+
+        /* 滚动动画 */
+        @keyframes roll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* AI大脑导航栏 */
+        .brain-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        /* 导航卡片样式 */
+        .nav-card {
+            width: 180px;
+            height: 220px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 153, 255, 0.4);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0,153,255,0.2);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px);
+            border-color: #00e6e6;
+            box-shadow: 0 0 30px rgba(0,230,230,0.5);
+        }
+
+        /* AI大脑图标 */
+        .nav-card i {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: #0099ff;
+            text-shadow: 0 0 15px #0099ff;
+        }
+
+        .nav-card span {
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态粒子背景 -->
+    <div id="particles-bg"></div>
+
+    <div class="container">
+        <!-- 主标题 -->
+        <h1 class="main-title">🤖 人工智能的奇妙世界</h1>
+
+        <!-- 每日AI冷知识 滚动条 -->
+        <div class="ai-tips">
+            <div class="tips-text">
+                【每日AI冷知识】世界上第一个AI程序诞生于1951年 | AI可以识别超过1000种情绪 | 神经网络模仿人类大脑结构 | GPT的参数量超过千亿级别 | AI绘画仅用几秒就能创作艺术作品 | 人工智能正在改变全球教育模式
+            </div>
+        </div>
+
+        <!-- AI大脑导航栏 -->
+        <div class="brain-nav">
+            <a href="子页.html" class="nav-card">
+                <i class="fas fa-brain"></i>
+                <span>AI在校园</span>
+            </a>
+            <a href="子页.html" class="nav-card">
+                <i class="fas fa-brain"></i>
+                <span>AI艺术家</span>
+            </a>
+            <a href="子页.html" class="nav-card">
+                <i class="fas fa-brain"></i>
+                <span>AI与游戏</span>
+            </a>
+            <a href="子页.html" class="nav-card">
+                <i class="fas fa-brain"></i>
+                <span>AI伦理法庭</span>
+            </a>
+            <a href="子页.html" class="nav-card">
+                <i class="fas fa-brain"></i>
+                <span>AI未来</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>小组合作 · 人工智能的奇妙世界 © 2025</footer>
+
+    <!-- 动态粒子背景JS -->
+    <script>
+        // 创建动态粒子效果
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const bg = document.getElementById('particles-bg');
+        bg.appendChild(canvas);
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // 粒子类
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = '#0099ff';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if(this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if(this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // 生成粒子
+        const particles = [];
+        for(let i=0; i<100; i++) particles.push(new Particle());
+
+        // 连线 & 渲染
+        function connect() {
+            for(let a=0; a<particles.length; a++) {
+                for(let b=a; b<particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx*dx + dy*dy);
+                    if(distance < 100) {
+                        ctx.strokeStyle = `rgba(0,153,255,${1 - distance/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            connect();
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>

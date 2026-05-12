@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>觉察篇：情绪有名字</title>
+    <style>
+        /* --- 全局设置 --- */
+        :root {
+            --bg-color: #fdfbf0; /* 极淡的米黄色 */
+            --card-bg: rgba(255, 248, 220, 0.6); /* 柠檬绸色半透明 */
+            --text-main: #5d5d5d; /* 深灰，比纯黑更柔和 */
+            --text-accent: #bfa05f; /* 暗金色，用于强调 */
+            --shadow: 0 8px 32px 0 rgba(218, 198, 146, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Songti SC", serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- 背景氛围与落雨动画 --- */
+        .rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 30%, #fffde7, #fdfbf0);
+        }
+
+        .drop {
+            position: absolute;
+            bottom: 100%;
+            width: 2px;
+            height: 15px;
+            background: linear-gradient(to bottom, transparent, #e0cda8);
+            animation: fall linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* --- 标题区域 --- */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: normal;
+            letter-spacing: 5px;
+            color: #8c7b50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #a89f91;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* --- 内容容器 --- */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        /* --- 情绪卡片设计 --- */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px); /* 毛玻璃效果 */
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px 0 rgba(218, 198, 146, 0.5);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 装饰用的小圆点 */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 235, 59, 0.1);
+            border-radius: 50%;
+            transition: 0.5s;
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* 每个情绪的专属色点缀 */
+        .joy h2 { color: #e6c35c; }   /* 喜 - 金黄 */
+        .anger h2 { color: #d48c70; } /* 怒 - 陶土红 */
+        .sorrow h2 { color: #7a9eb1; }/* 哀 - 雾蓝 */
+        .fear h2 { color: #9c8cb8; }  /* 惧 - 紫藤 */
+
+        .card p {
+            line-height: 1.8;
+            font-size: 0.95rem;
+            color: #666;
+            text-align: justify;
+        }
+
+        /* --- 返回按钮 --- */
+        .back-btn-container {
+            margin: 50px 0;
+            z-index: 1;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: transparent;
+            color: #8c7b50;
+            border: 1px solid #dccba6;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn:hover {
+            background-color: #dccba6;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(220, 203, 166, 0.4);
+        }
+
+        /* --- 移动端适配 --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { width: 95%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景落雨特效容器 -->
+    <div class="rain-container" id="rainContainer"></div>
+
+    <header>
+        <h1><a href="心事落雨，无声无息.html" >心事落雨</a></h1>
+        <div class="subtitle">无声无息 · 润物于心</div>
+    </header>
+
+    <main class="container">
+        <!-- 喜 -->
+        <article class="card joy">
+            <h2>喜 · Joy</h2>
+            <p>
+                如雨后天晴透过云层的微光，不刺眼却足够温暖。它是心头泛起的一层淡金涟漪，是久旱逢甘霖后的舒展。喜悦并非总是轰轰烈烈，更多时候，它像是一场温柔的细雨，悄无声息地滋润着干涸的心田，留下生机与柔软。
+            </p>
+        </article>
+
+        <!-- 怒 -->
+        <article class="card anger">
+            <h2>怒 · Anger</h2>
+            <p>
+                那是夏日午后的雷阵雨，急促而猛烈。它带着滚烫的温度，试图冲刷掉心中的不公与压抑。虽然声势浩大，却也如雨水入海，终将平息。在淡黄的底色下，愤怒化作了一抹陶土色的沉淀，提醒着我们边界的存在，而后归于平静。
+            </p>
+        </article>
+
+        <!-- 哀 -->
+        <article class="card sorrow">
+            <h2>哀 · Sorrow</h2>
+            <p>
+                这是最贴合雨意的情绪。连绵不绝，淅淅沥沥，如同窗外无尽的雨丝。哀愁是透明的重量，它让时间变慢，让世界变得安静。在这种情绪里，我们学会独处，学会像雨水接纳大地一样，接纳自己的脆弱与失落，任由其在无声中流淌。
+            </p>
+        </article>
+
+        <!-- 惧 -->
+        <article class="card fear">
+            <h2>惧 · Fear</h2>
+            <p>
+                像是行走在迷雾笼罩的雨夜，看不清前路，只听得到未知的声响。恐惧是一种清冷的紫调，它让人收缩、警惕。然而，雨水也会洗去尘埃，当迷雾散去，我们会发现，那份小心翼翼的试探，也是自我保护的一种温柔方式。
+            </p>
+        </article>
+    </main>
+
+    <div class="back-btn-container">
+        <a href="index.html" class="back-btn">← 返回主页</a>
+    </div>
+
+    <script>
+        // JS用于生成随机的落雨效果
+        function createRain() {
+            const container = document.getElementById('rainContainer');
+            const dropCount = 40; // 雨滴数量，保持稀疏以符合“无声无息”
+
+            for (let i = 0; i < dropCount; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+                
+                // 随机位置
+                drop.style.left = Math.random() * 100 + 'vw';
+                
+                // 随机动画时长（下落速度）
+                drop.style.animationDuration = Math.random() * 2 + 3 + 's'; // 3-5秒
+                
+                // 随机延迟，让雨滴错落有致
+                drop.style.animationDelay = Math.random() * 5 + 's';
+                
+                // 随机透明度，制造层次感
+                drop.style.opacity = Math.random() * 0.3 + 0.1;
+
+                container.appendChild(drop);
+            }
+        }
+
+        window.onload = createRain;
+    </script>
+</body>
+</html>
